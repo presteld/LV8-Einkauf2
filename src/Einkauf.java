@@ -72,9 +72,30 @@ public class Einkauf extends JFrame {
     }
 
     public void berechen() {
-        taBestellung.append("\nFolgende Produkte wurden bestellt:");
+        //taBestellung.append("\nFolgende Produkte wurden bestellt:");
+
+        try {
+            String sStueckzahl = txtStueckzahl.getText().toString();
+            String sStueckpreis = txtStueckpreis.getText().toString();
+            String sRabatt = txtRabatt.getText().toString();
+
+            int iStueckzahl = Integer.parseInt(sStueckzahl);
+            double dStueckpreis = Double.parseDouble(sStueckpreis);
+            double dRabatt = Double.parseDouble(sRabatt)/100.0;
+
+            double dgesamt = iStueckzahl * dStueckpreis * (1.0 - dRabatt);
+            dgesamt = Math.round(dgesamt * 100.0) / 100.0;
+
+            taBestellung.append("\nStückzahl "+ sStueckzahl + "\t  x  Stückpreis " + sStueckpreis + "€\t = "+ dgesamt + "€");
 
 
+
+
+        } catch (Exception e) {
+
+
+            throw new RuntimeException(e);
+        }
 
     }
 

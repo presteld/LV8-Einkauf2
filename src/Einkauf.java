@@ -18,13 +18,14 @@ public class Einkauf extends JFrame {
     private JButton btnBerechnen;
     private JTextArea taBestellung;
     private JButton btnEnde;
+    private JButton btnZurrueck;
 
 
     public Einkauf() throws HeadlessException {
 
         setTitle("Bestellfenster");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        setSize(800, 400);
         setContentPane(jpPanel);
         setVisible(true);
 
@@ -69,6 +70,13 @@ public class Einkauf extends JFrame {
                     berechen();
             }
         });
+
+        btnZurrueck.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                taBestellung.setText("Hier kommt Ihre Bestellung:");
+            }
+        });
     }
 
     public void berechen() {
@@ -93,6 +101,7 @@ public class Einkauf extends JFrame {
 
         } catch (Exception e) {
 
+            JOptionPane.showMessageDialog(this,"Bitte geben Sie korrekte Zahlen ein!","Ungültige eingabe",JOptionPane.WARNING_MESSAGE);
 
             throw new RuntimeException(e);
         }
